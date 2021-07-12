@@ -14,9 +14,11 @@ app.use(cors(corsOptions));
 
 //app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
     res.json({ message: "Test" });
-});
+});*/
+
+require("./app/routes/product.route")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {

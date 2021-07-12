@@ -7,3 +7,5 @@ var conn = mysql.createPool({
     password: dbConfig.PASSWORD,
     database: dbConfig.DB
 });
+
+module.exports = conn;
