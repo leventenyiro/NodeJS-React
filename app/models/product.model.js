@@ -3,7 +3,7 @@ const conn = require("./db")
 const Product = function(product) {
     this.name = product.name
     this.price = product.price
-    this.availability = product.availability
+    this.active = product.active
 }
 
 Product.getAll = result => {
@@ -38,6 +38,24 @@ Product.create = (product, result) => {
             result(err, null)
             return
         }
+        result(null, {
+            message: "Successful!"
+        })
+    })
+}
+
+Product.update = (id, product, result) => {
+    conn.query("UPDATE product SET name = ?, price = ?, active = ? WHERE id = ?", [product.name, product.price, product.active, id], (err, res) => {
+        if (err) {
+            result(null, err)
+            return
+        }
+
+        if (res.affectedRows == 0) {
+            result({ kind: "not_found" }, null)
+            return
+        }
+
         result(null, {
             message: "Successful!"
         })
