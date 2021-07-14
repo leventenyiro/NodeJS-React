@@ -6,7 +6,7 @@ const Navbar = () => {
             <h1>NodeJS-RestApi</h1>
             <div className="links">
                 <Link to="/">Home</Link>
-                <Link to="/create">New Blog</Link>
+                <Link to="/create">Create</Link>
             </div>
         </nav>
     );

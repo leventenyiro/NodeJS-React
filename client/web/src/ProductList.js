@@ -7,7 +7,7 @@ const ProductList = ({ products, title }) => {
             { products.map((product) =>
                 <div className="product-preview" key={ product.id }>
                     <Link to={`/product/${ product.id }`}>
-                        <h2>{ product.title }</h2>
+                        <h2>{ product.name }</h2>
                         <p>$ { product.price }</p>
                         <p>{ product.active === 1 ? product.active = "Available" : product.active = "Not available" }</p>
                     </Link>
