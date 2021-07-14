@@ -6,9 +6,6 @@ const ProductDetails = () => {
     const url = "http://localhost:8080/product/" + id
     console.log(url)
     const { data: product, error, isPending } = useFetch(url);
-    //const history = useHistory()
-
-    //product.active === 1 ? product.active = "Available" : product.active = "Not available"
 
     return (
         <div className="product-details">
@@ -18,7 +15,7 @@ const ProductDetails = () => {
                 <article>
                     <h2>{ product.name }</h2>
                     <p>$ { product.price }</p>
-                    <p>{ product.active }</p>
+                    <p>{ product.active === 1 ? product.active = "Available" : product.active = "Not available" }</p>
                 </article>
             )}
         </div>
