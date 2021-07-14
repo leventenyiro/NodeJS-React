@@ -1,2 +1,2 @@
-npm i express cors
-node server
+npm i express cors mysql
+nodemon server

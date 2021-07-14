@@ -81,6 +81,14 @@
         "successfulProfileModify": "Successful profile modify!",
 
         "unsuccessfulLogout": "Unsuccessful logout!",
-        "successfulLogout": "Successful logout!"
+        "successfulLogout": "Successful logout!",
+
+        "noProductWithId": "There is not product with this id!",
+        "priceMustMoreThanZero": "Price must be more than 0!",
+        "successfulCreate": "Successful create!",
+        "unsuccessfulUpdate": "Unsuccessful update!",
+        "successfulUpdate": "Successful update!",
+        "unsuccessfulDelete": "Unsuccessful delete!",
+        "successfulDelete": "Successful delete!"
     }
 }

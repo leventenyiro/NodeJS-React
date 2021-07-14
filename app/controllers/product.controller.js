@@ -5,8 +5,10 @@ function message(req, msg) {
     let lang = "en"
     let acceptLanguage = req.headers["accept-language"]
 
-    if (acceptLanguage != undefined && acceptLanguage.split(";")[0].split(",")[1] in languages)
-        lang = acceptLanguage.split(";")[0].split(",")[1]
+    /*if (acceptLanguage != undefined && acceptLanguage.split(";")[0].split(",")[1] in languages)
+        lang = acceptLanguage.split(";")[0].split(",")[1]*/
+    if (acceptLanguage != undefined && acceptLanguage.split("-")[0][msg] in languages)
+        lang = acceptLanguage.split("-")[0]
 
     return languages[lang][msg]
 }
