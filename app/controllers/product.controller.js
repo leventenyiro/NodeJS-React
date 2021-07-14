@@ -29,7 +29,7 @@ exports.getById = (req, res) => {
 
 exports.create = (req, res) => {
     if (!req.body)
-        res.status(404).send({
+        res.status(400).send({
             message: "You forgot something!"
         })
 
@@ -50,11 +50,10 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-    console.log(req.body)
     if (!req.body)
-    res.status(404).send({
-        message: "You forgot something!"
-    })
+        res.status(404).send({
+            message: "You forgot something!"
+        })
 
     const product = new Product({
         name: req.body.name,
@@ -70,9 +69,25 @@ exports.update = (req, res) => {
                     })
                 else
                     res.status(500).send({
-                        message: err.message || "Server error!"
+                        message: "Server error!"
                     })
             } else
                 res.send(data)
         })
+}
+
+exports.delete = (req, res) => {
+    Product.delete(req.params.id, (err, data) => {
+        if (err) {
+            if (err.kind === "not_found")
+                res.status(404).send({
+                    message: "Unsuccessful delete!"
+                })
+            else
+                res.status(500).send({
+                    message: "Server error!"
+                })
+        } else
+            res.send(data)
+    })
 }

@@ -57,7 +57,25 @@ Product.update = (id, product, result) => {
         }
 
         result(null, {
-            message: "Successful!"
+            message: "Successful update!"
+        })
+    })
+}
+
+Product.delete = (id, result) => {
+    conn.query("DELETE FROM product WHERE id = ?", id, (err, res) => {
+        if (err) {
+            result(null, err)
+            return
+        }
+
+        if (res.affectedRows == 0) {
+            result({ kind: "not_found" }, null)
+            return
+        }
+
+        result(null, {
+            message: "Successful delete!"
         })
     })
 }
