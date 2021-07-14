@@ -9,7 +9,7 @@ const Product = function(product) {
 Product.getAll = result => {
     conn.query("SELECT * FROM product", (err, res) => {
         if (err) {
-            result(null, err)
+            result(err, null)
             return
         }
         
@@ -38,9 +38,7 @@ Product.create = (product, result) => {
             result(err, null)
             return
         }
-        result(null, {
-            message: "Successful!"
-        })
+        result(null)
     })
 }
 
@@ -56,16 +54,14 @@ Product.update = (id, product, result) => {
             return
         }
 
-        result(null, {
-            message: "Successful update!"
-        })
+        result(null)
     })
 }
 
 Product.delete = (id, result) => {
     conn.query("DELETE FROM product WHERE id = ?", id, (err, res) => {
         if (err) {
-            result(null, err)
+            result(err, null)
             return
         }
 
@@ -74,9 +70,18 @@ Product.delete = (id, result) => {
             return
         }
 
-        result(null, {
-            message: "Successful delete!"
-        })
+        result(null)
+    })
+}
+
+Product.deleteAll = result => {
+    conn.query("DELETE FROM product", (err, res) => {
+        if (err) {
+            result(err, null)
+            return
+        }
+
+        result(null)
     })
 }
 

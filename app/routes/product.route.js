@@ -10,4 +10,6 @@ module.exports = app => {
     app.put("/product/:id", product.update)
 
     app.delete("/product/:id", product.delete)
+
+    app.delete("/product/", product.deleteAll)
 }

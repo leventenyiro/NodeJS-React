@@ -1,10 +1,21 @@
 const Product = require("../models/product.model")
+const languages = require("../../languages.json")
+
+function message(req, msg) {
+    let lang = "en"
+    let acceptLanguage = req.headers["accept-language"]
+
+    if (acceptLanguage != undefined && acceptLanguage.split(";")[0].split(",")[1] in languages)
+        lang = acceptLanguage.split(";")[0].split(",")[1]
+
+    return languages[lang][msg]
+}
 
 exports.getAll = (req, res) => {
     Product.getAll((err, data) => {
         if (err)
             res.status(500).send({
-                message: err.message || "Server error!"
+                error: message(req, "serverErr")
             })
         else
             res.send(data)
@@ -16,11 +27,11 @@ exports.getById = (req, res) => {
         if (err) {
             if (err.kind === "not_found")
                 res.status(404).send({
-                    message: `Not found product with id ${req.params.id}`
+                    error: message(req, "noProductWithId")
                 })
             else
                 res.status(500).send({
-                    message: "Server error!"
+                    error: message(req, "serverErr")
                 })
         } else
             res.send(data)
@@ -28,66 +39,95 @@ exports.getById = (req, res) => {
 }
 
 exports.create = (req, res) => {
-    if (!req.body)
+    if (req.body.name == "" || req.body.name == undefined || req.body.price == undefined || req.body.active == undefined)
         res.status(400).send({
-            message: "You forgot something!"
+            error: message(req, "sthMissing")
         })
-
-    const product = new Product({
-        name: req.body.name,
-        price: req.body.price,
-        active: req.body.active
-    })
-
-    Product.create(product, (err, data) => {
-        if (err)
-            res.status(500).send({
-                message: err.message || "Server error!"
-            })
-        else
-            res.send(data)
-    })
+    else if (req.body.price < 0)
+        res.status(400).send({
+            error: message(req, "priceMustMoreThanZero")
+        })
+    else {
+        const product = new Product({
+            name: req.body.name,
+            price: req.body.price,
+            active: req.body.active
+        })
+    
+        Product.create(product, (err) => {
+            if (err)
+                res.status(500).send({
+                    error: message(req, "serverErr")
+                })
+            else
+                res.send({
+                    success: message(req, "successfulCreate")
+                })
+        })
+    }
 }
 
 exports.update = (req, res) => {
-    if (!req.body)
-        res.status(404).send({
-            message: "You forgot something!"
+    if (req.body.name == "" || req.body.name == undefined || req.body.price == undefined || req.body.active == undefined)
+        res.status(400).send({
+            error: message(req, "sthMissing")
         })
-
-    const product = new Product({
-        name: req.body.name,
-        price: req.body.price,
-        active: req.body.active
-    })
-
-    Product.update(req.params.id, product, (err, data) => {
+    else if (req.body.price < 0)
+        res.status(400).send({
+            error: message(req, "priceMustMoreThanZero")
+        })
+    else {
+        const product = new Product({
+            name: req.body.name,
+            price: req.body.price,
+            active: req.body.active
+        })
+    
+        Product.update(req.params.id, product, (err) => {
             if (err) {
                 if (err.kind === "not_found")
                     res.status(404).send({
-                        message: "Unsuccessful update!"
+                        error: message(req, "unsuccessfulUpdate")
                     })
                 else
                     res.status(500).send({
-                        message: "Server error!"
+                        error: message(req, "serverErr")
                     })
             } else
-                res.send(data)
+                res.send({
+                    success: message(req, "successfulUpdate")
+                })
         })
+    }
 }
 
 exports.delete = (req, res) => {
-    Product.delete(req.params.id, (err, data) => {
+    Product.delete(req.params.id, (err) => {
         if (err) {
             if (err.kind === "not_found")
                 res.status(404).send({
-                    message: "Unsuccessful delete!"
+                    error: message(req, "unsuccessfulDelete")
                 })
             else
                 res.status(500).send({
-                    message: "Server error!"
+                    success: message(req, "serverErr")
                 })
         } else
-            res.send(data)
+            res.send({
+                success: message(req, "successfulDelete")
+            })
+    })
+}
+
+exports.deleteAll = (req, res) => {
+    Product.deleteAll((err) => {
+        if (err) {
+            res.status(500).send({
+                success: message(req, "serverErr")
+            })
+        } else
+            res.send({
+                success: message(req, "successfulDelete")
+            })
     })
 }
