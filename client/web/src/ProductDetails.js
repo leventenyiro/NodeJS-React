@@ -1,8 +1,7 @@
 import { useHistory, useParams } from "react-router-dom";
-import useFetch from "./useFetch";
 
 const ProductDetails = () => {
-    const { id } = useParams()
+    /*const { id } = useParams()
     const url = "http://localhost:8080/product/" + id
     const { data: product, error, isPending } = useFetch(url);
     const history = useHistory()
@@ -30,7 +29,7 @@ const ProductDetails = () => {
                 </article>
             )}
         </div>
-    );
+    );*/
 }
  
 export default ProductDetails;

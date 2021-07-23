@@ -3,6 +3,7 @@ import Home from './Home';
 import Create from './Create';
 import ProductDetails from './ProductDetails';
 import NotFound from './NotFound';
+import RealTime from './RealTime';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route exact path="/">
+              <RealTime />
             </Route>
             <Route path="/create">
               <Create />
