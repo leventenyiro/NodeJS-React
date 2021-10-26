@@ -30,49 +30,49 @@
   padding: 6px;
 }
 
+#products {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
 @media screen and (min-width: 900px) {
   #products {
-    display: -ms-grid;
-    display: grid;
     -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
-    place-items: center;
   }
 }
 
 @media screen and (max-width: 900px) {
   #products {
-    display: -ms-grid;
-    display: grid;
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
-    place-items: center;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   #products {
-    display: -ms-grid;
-    display: grid;
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-    place-items: center;
   }
 }
 
 #product {
   border-radius: 8px;
-  -webkit-box-shadow: 0 0 40px 10px gray;
-          box-shadow: 0 0 40px 10px gray;
+  -webkit-box-shadow: 0 0 20px 2px gray;
+          box-shadow: 0 0 20px 2px gray;
   padding-top: 10%;
   padding-bottom: 10%;
   padding-left: 30%;
   padding-right: 30%;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-#product h2, #product h3 {
-  margin-bottom: 100%;
+#product * {
+  margin-bottom: 10%;
 }
 
 .btn {
@@ -82,6 +82,7 @@
   -webkit-transition: 0.2s;
   transition: 0.2s;
   cursor: pointer;
+  font-size: 100%;
 }
 
 .btn:hover {
@@ -96,6 +97,15 @@
 
 .btn-danger:hover {
   background-color: #c80000;
+}
+
+.btn-primary {
+  color: white;
+  background-color: #0077ff;
+}
+
+.btn-primary:hover {
+  background-color: #005ac0;
 }
 
 header {

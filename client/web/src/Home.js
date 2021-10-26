@@ -11,6 +11,10 @@ const Home = () => {
         }).then(() => fetchData())
     }
 
+    const handleUpdate = (id) => {
+        // nyisson meg egy fület
+    }
+
     const fetchData = () => {
         fetch("http://localhost:8080/product")
         .then(res => {
@@ -48,6 +52,7 @@ const Home = () => {
                         {<button onClick={() => handleDelete(product.id)}>Delete</button>*/}
                         <h2>{product.name}</h2>
                         <h3>{product.price}</h3>
+                        <button onClick={() => handleUpdate(product.id)} class="btn btn-primary">Update</button>
                         <button onClick={() => handleDelete(product.id)}class="btn btn-danger">Delete</button>
                     </div>
                 ))}
