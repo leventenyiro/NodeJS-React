@@ -2,9 +2,6 @@
 * {
   margin: 0;
   font-family: "Inter";
-  color: #333;
-  max-width: 1200px;
-  margin: auto;
 }
 
 .navbar {
@@ -16,85 +13,92 @@
       -ms-flex-align: center;
           align-items: center;
   margin: 0 auto;
-}
-
-.navbar h1 {
-  color: #475576;
+  -webkit-box-shadow: 0 0 20px 0 black;
+          box-shadow: 0 0 20px 0 black;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .navbar .links {
-  margin-left: auto;
+  margin-left: 30px;
 }
 
 .navbar a {
-  margin-left: 16px;
   text-decoration: none;
   padding: 6px;
 }
 
-.navbar a:hover {
-  color: #475576;
+@media screen and (min-width: 900px) {
+  #products {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+  }
 }
 
-.product-list {
-  margin: 0 30px;
+@media screen and (max-width: 900px) {
+  #products {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
 }
 
-.product-preview {
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  padding: 20px 10px;
-  margin: 30px 0;
+@media screen and (max-width: 600px) {
+  #products {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    place-items: center;
+  }
 }
 
-.product-preview * {
-  float: left;
-  text-align: center;
-  width: 20%;
-  margin: 0 5px;
+#product {
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 40px 10px gray;
+          box-shadow: 0 0 40px 10px gray;
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-left: 30%;
+  padding-right: 30%;
+  margin-bottom: 20%;
 }
 
-.product-preview::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-button {
-  border: none;
-}
-
-button:hover {
-  cursor: pointer;
+#product h2, #product h3 {
+  margin-bottom: 100%;
 }
 
 .btn {
-  width: 15%;
-  padding: 7px;
+  padding: 10px 30px 10px 30px;
   border-radius: 5px;
-  text-decoration: none;
-}
-
-.btn-primary {
-  background-color: #0d6efd;
-  color: white;
+  border: none;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  cursor: pointer;
 }
 
-.btn-primary:hover {
-  background-color: #0a58ca;
+.btn:hover {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 .btn-danger {
-  background-color: #dc3545;
+  background-color: red;
   color: white;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
 }
 
 .btn-danger:hover {
-  background-color: #b02a37;
+  background-color: #c80000;
+}
+
+header {
+  height: 150px;
 }
 /*# sourceMappingURL=index.css.map */

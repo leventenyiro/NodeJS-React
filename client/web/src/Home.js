@@ -41,12 +41,18 @@ const Home = () => {
         <div className="home">
             {error && <div>{ error }</div>}
             {isPending && <div>Loading...</div>}
-            {products && products.map(product => (
-                <div key={product.id}>
-                    <p>{product.id} - {product.name} - {product.price}</p>
-                    {<button onClick={() => handleDelete(product.id)}>Delete</button>}
-                </div>
-            ))}
+            <div id="products">
+                {products && products.map(product => (
+                    <div id="product" key={product.id}>
+                        {/*<p>{product.id} - {product.name} - {product.price}</p>
+                        {<button onClick={() => handleDelete(product.id)}>Delete</button>*/}
+                        <h2>{product.name}</h2>
+                        <h3>{product.price}</h3>
+                        <button onClick={() => handleDelete(product.id)}class="btn btn-danger">Delete</button>
+                    </div>
+                ))}
+            </div>
+
         </div>
     )
 }

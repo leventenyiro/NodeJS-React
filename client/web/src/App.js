@@ -10,6 +10,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <header></header>
         <Navbar />
         <div className="content">
           <Switch>
