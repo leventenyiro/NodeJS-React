@@ -14,7 +14,7 @@ const Home = () => {
         }).then(() => fetchData())
     }
 
-    const openProduct = (id) => {
+    const handleOpenProduct = (id) => {
         // nyisson meg egy fület
         history.push(`/product/${id}`)
     }
@@ -51,12 +51,20 @@ const Home = () => {
             {error && <div>{ error }</div>}
             <div id="products">
                 {products && products.map(product => (
-                    <div id="product" key={product.id}>
+                    <div id="product" /*key={product.id}*/ onClick={(e) => {
+                        e.preventDefault()
+                        handleOpenProduct(product.id)
+                    }}>
+                        
                         <h2>{product.name}</h2>
                         <h3>{product.price}</h3>
                         <p>{ product.active === 1 ? "Available" : "Not available" }</p>
                         
-                        <button onClick={() => handleDelete(product.id)}className="btn btn-danger">Delete</button>
+                        <button className="btn btn-danger" onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            handleDelete(product.id)
+                        }}>Delete</button>
                     </div>
                 ))}
             </div>
