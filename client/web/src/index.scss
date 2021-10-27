@@ -62,10 +62,17 @@
     margin-bottom: 10%;
     margin-left: 10%;
     margin-right: 10%;
+    transition: 0.2s;
+    cursor: pointer;
 
     * {
         margin-bottom: 10%;
     }
+}
+
+#product:hover {
+    box-shadow: 0 0 30px 8px gray;
+    transition: 0.3s;
 }
 
 .btn {
@@ -101,4 +108,18 @@
 
 header {
     height: 150px;
+}
+
+// product-details
+
+#product-details {
+    background-color: red;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+        font-size: larger;
+    }
 }

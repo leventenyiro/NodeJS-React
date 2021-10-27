@@ -69,10 +69,20 @@
   margin-bottom: 10%;
   margin-left: 10%;
   margin-right: 10%;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 #product * {
   margin-bottom: 10%;
+}
+
+#product:hover {
+  -webkit-box-shadow: 0 0 30px 8px gray;
+          box-shadow: 0 0 30px 8px gray;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .btn {
@@ -110,5 +120,18 @@
 
 header {
   height: 150px;
+}
+
+#product-details {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=index.css.map */

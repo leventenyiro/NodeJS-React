@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
+import { useHistory } from "react-router"
 
 const Home = () => {
     const [products, setProducts] = useState(null)
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null)
+    const history = useHistory()
 
     const handleDelete = (id) => {
         fetch("http://localhost:8080/product/" + id, {
@@ -11,9 +13,9 @@ const Home = () => {
         }).then(() => fetchData())
     }
 
-    const updateForm = (id) => {
+    const openProduct = (id) => {
         // nyisson meg egy fület
-        
+        history.push(`/product/${id}`)
     }
 
     const fetchData = () => {
@@ -44,16 +46,16 @@ const Home = () => {
     
     return (
         <div className="home">
-            {error && <div>{ error }</div>}
             {isPending && <div>Loading...</div>}
+            {error && <div>{ error }</div>}
             <div id="products">
                 {products && products.map(product => (
-                    <div id="product" key={product.id}>
-                        {/*<p>{product.id} - {product.name} - {product.price}</p>
-                        {<button onClick={() => handleDelete(product.id)}>Delete</button>*/}
+                    <div id="product" key={product.id} onClick={() => openProduct(product.id)}>
                         <h2>{product.name}</h2>
                         <h3>{product.price}</h3>
-                        <button onClick={() => updateForm(product.id)} className="btn btn-primary">Update</button>
+                        <p>{ product.active === 1 ? product.active = "Available" : product.active = "Not available" }</p>
+                        {//<button onClick={() => updateForm(product.id)} className="btn btn-primary">Update</button>
+}
                         <button onClick={() => handleDelete(product.id)}className="btn btn-danger">Delete</button>
                     </div>
                 ))}
