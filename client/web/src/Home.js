@@ -1,3 +1,4 @@
+import e from "cors"
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router"
 
@@ -50,12 +51,11 @@ const Home = () => {
             {error && <div>{ error }</div>}
             <div id="products">
                 {products && products.map(product => (
-                    <div id="product" key={product.id} onClick={() => openProduct(product.id)}>
+                    <div id="product" key={product.id}>
                         <h2>{product.name}</h2>
                         <h3>{product.price}</h3>
                         <p>{ product.active === 1 ? "Available" : "Not available" }</p>
-                        {//<button onClick={() => updateForm(product.id)} className="btn btn-primary">Update</button>
-}
+                        
                         <button onClick={() => handleDelete(product.id)}className="btn btn-danger">Delete</button>
                     </div>
                 ))}
