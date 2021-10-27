@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 const Create = () => {
     const [name, setName] = useState();
     const [price, setPrice] = useState();
-    const [active, setActive] = useState('levi');
+    const [active, setActive] = useState();
     const [isPending, setIsPending] = useState(false);
     const history = useHistory();
 

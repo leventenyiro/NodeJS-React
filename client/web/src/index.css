@@ -4,6 +4,33 @@
   font-family: "Inter";
 }
 
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: none;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  font-size: 15px;
+}
+
+input:focus {
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  border: 1px solid #0077ff;
+  outline: 4px solid rgba(0, 119, 255, 0.5);
+}
+
+input:disabled {
+  color: gray;
+}
+
+input[type=checkbox] {
+  width: 17px;
+  height: 17px;
+  margin-left: 10px;
+}
+
 .navbar {
   padding: 20px;
   display: -webkit-box;
@@ -62,10 +89,8 @@
   border-radius: 8px;
   -webkit-box-shadow: 0 0 20px 2px gray;
           box-shadow: 0 0 20px 2px gray;
-  padding-top: 10%;
-  padding-bottom: 10%;
-  padding-left: 30%;
-  padding-right: 30%;
+  width: 80%;
+  padding: 30px 0 20px 0;
   margin-bottom: 10%;
   margin-left: 10%;
   margin-right: 10%;
@@ -122,6 +147,16 @@ header {
   height: 150px;
 }
 
+/*#product-details {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+        font-size: larger;
+    }
+}*/
 #product-details {
   height: 100%;
   display: -webkit-box;
@@ -133,5 +168,14 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
+}
+
+#product-details h2 {
+  font-size: xx-large;
+}
+
+#product-details * {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=index.css.map */

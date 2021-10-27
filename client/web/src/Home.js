@@ -53,7 +53,7 @@ const Home = () => {
                     <div id="product" key={product.id} onClick={() => openProduct(product.id)}>
                         <h2>{product.name}</h2>
                         <h3>{product.price}</h3>
-                        <p>{ product.active === 1 ? product.active = "Available" : product.active = "Not available" }</p>
+                        <p>{ product.active === 1 ? "Available" : "Not available" }</p>
                         {//<button onClick={() => updateForm(product.id)} className="btn btn-primary">Update</button>
 }
                         <button onClick={() => handleDelete(product.id)}className="btn btn-danger">Delete</button>
