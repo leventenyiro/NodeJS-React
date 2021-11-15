@@ -55,7 +55,7 @@ const Home = () => {
                         e.preventDefault()
                         handleOpenProduct(product.id)
                     }}>
-                        
+                        <img src={`http://localhost:8080/storage/${product.image}`}/>
                         <h2>{product.name}</h2>
                         <h3>{product.price}</h3>
                         <p>{ product.active === 1 ? "Available" : "Not available" }</p>

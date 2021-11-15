@@ -91,6 +91,11 @@ input[type=checkbox] {
     * {
         margin-bottom: 10%;
     }
+
+    img {
+        width: 70%;
+        border-radius: 8px;
+    }
 }
 
 #product:hover {
@@ -133,19 +138,6 @@ header {
     height: 150px;
 }
 
-// product-details
-
-/*#product-details {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    h1 {
-        font-size: larger;
-    }
-}*/
-
 #product-details {
     height: 100%;
     display: flex;
@@ -159,5 +151,11 @@ header {
 
     * {
         margin-bottom: 20px;
+    }
+
+    img {
+        width: 40%;
+        border-radius: 8px;
+        float: right;
     }
 }

@@ -103,6 +103,11 @@ input[type=checkbox] {
   margin-bottom: 10%;
 }
 
+#product img {
+  width: 70%;
+  border-radius: 8px;
+}
+
 #product:hover {
   -webkit-box-shadow: 0 0 30px 8px gray;
           box-shadow: 0 0 30px 8px gray;
@@ -147,16 +152,6 @@ header {
   height: 150px;
 }
 
-/*#product-details {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    h1 {
-        font-size: larger;
-    }
-}*/
 #product-details {
   height: 100%;
   display: -webkit-box;
@@ -177,5 +172,11 @@ header {
 
 #product-details * {
   margin-bottom: 20px;
+}
+
+#product-details img {
+  width: 40%;
+  border-radius: 8px;
+  float: right;
 }
 /*# sourceMappingURL=index.css.map */

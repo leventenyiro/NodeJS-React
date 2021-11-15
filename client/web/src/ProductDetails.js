@@ -95,6 +95,8 @@ const ProductDetails = () => {
                 { error && <div>{ error }</div>}
                 { product && (
                     <article>
+                        <img src={`http://localhost:8080/storage/${product.image}`}/>
+                        
                         <label htmlFor="inputName">Name</label><br />
                         <input type="text" id="inputName" value={name} onChange={(e) => setName(e.target.value)} disabled={disabled} /><br />
 
