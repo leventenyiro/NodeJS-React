@@ -5,10 +5,8 @@ const path = require('path')
 
 function message(req, msg) {
     let lang = "en"
-    let acceptLanguage = req.headers["accept-language"]
+    const acceptLanguage = req.headers["accept-language"]
 
-    /*if (acceptLanguage != undefined && acceptLanguage.split(";")[0].split(",")[1] in languages)
-        lang = acceptLanguage.split(";")[0].split(",")[1]*/
     if (acceptLanguage != undefined && acceptLanguage.split("-")[0][msg] in languages)
         lang = acceptLanguage.split("-")[0]
 
@@ -109,7 +107,6 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    // először le kell kérni a képet
     Product.getImageById(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found")
@@ -164,5 +161,4 @@ exports.deleteAll = (req, res) => {
                 }
             })
     })
-
 }
