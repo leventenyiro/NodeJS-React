@@ -1,3 +1,2 @@
-#npm i express cors mysql
-#nodemon server
-
+npm i express cors mysql multer
+nodemon server

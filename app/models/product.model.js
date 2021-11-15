@@ -4,6 +4,7 @@ const Product = function(product) {
     this.name = product.name
     this.price = product.price
     this.active = product.active
+    this.image = product.image
 }
 
 Product.getAll = result => {
@@ -60,6 +61,28 @@ Product.deleteAll = result => {
         if (err)
             return result(err, null)
         result(null)
+    })
+}
+
+// image
+Product.getImageById = (id, result) => {
+    var sql = `SELECT image FROM product WHERE id = "${id}"`
+    conn.query(sql, (err, res) => {
+        if (err)
+            return result(err, null)
+        if (res.length)
+            return result(null, res[0])
+        result({ kind: "not_found" }, null)
+    })
+}
+
+Product.getAllImage = result => {
+    conn.query("SELECT image FROM product", (err, res) => {
+        if (err) {
+            return result(err, null)
+        }
+        
+        result(null, res)
     })
 }
 

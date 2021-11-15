@@ -1,5 +1,7 @@
 const Product = require("../models/product.model")
 const languages = require("../../languages.json")
+const fs = require('fs')
+const path = require('path')
 
 function message(req, msg) {
     let lang = "en"
@@ -53,15 +55,17 @@ exports.create = (req, res) => {
         const product = new Product({
             name: req.body.name,
             price: req.body.price,
-            active: req.body.active
+            active: req.body.active,
+            image: req.file.filename
         })
     
         Product.create(product, (err) => {
-            if (err)
+            if (err) {
+                fs.unlinkSync(path.resolve(`./storage/${req.image.filename}`))
                 res.status(500).send({
                     error: message(req, "serverErr")
                 })
-            else
+            } else
                 res.send({
                     success: message(req, "successfulCreate")
                 })
@@ -82,7 +86,8 @@ exports.update = (req, res) => {
         const product = new Product({
             name: req.body.name,
             price: req.body.price,
-            active: req.body.active
+            active: req.body.active,
+            image: req.file.imagename
         })
     
         Product.update(req.params.id, product, (err) => {
@@ -104,32 +109,60 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-    Product.delete(req.params.id, (err) => {
+    // először le kell kérni a képet
+    Product.getImageById(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found")
                 res.status(404).send({
-                    error: message(req, "unsuccessfulDelete")
+                    error: message(req, "noProductWithId")
                 })
             else
                 res.status(500).send({
-                    success: message(req, "serverErr")
+                    error: message(req, "serverErr")
                 })
-        } else
-            res.send({
-                success: message(req, "successfulDelete")
+        } else {
+            Product.delete(req.params.id, (err) => {
+                if (err) {
+                    if (err.kind === "not_found")
+                        res.status(404).send({
+                            error: message(req, "unsuccessfulDelete")
+                        })
+                    else
+                        res.status(500).send({
+                            success: message(req, "serverErr")
+                        })
+                } else {
+                    fs.unlinkSync(path.resolve(`./storage/${data.image}`))
+                    res.send({
+                        success: message(req, "successfulDelete")
+                    })
+                }
             })
+        }
     })
 }
 
 exports.deleteAll = (req, res) => {
-    Product.deleteAll((err) => {
-        if (err) {
+    Product.getAll((err, data) => {
+        if (err)
             res.status(500).send({
-                success: message(req, "serverErr")
+                error: message(req, "serverErr")
             })
-        } else
-            res.send({
-                success: message(req, "successfulDelete")
+        else
+            Product.deleteAll((err) => {
+                if (err) {
+                    res.status(500).send({
+                        success: message(req, "serverErr")
+                    })
+                } else {
+                    for (let e of data) {
+                        fs.unlinkSync(path.resolve(`./storage/${e.image}`))
+                    }
+                    res.send({
+                        success: message(req, "successfulDelete")
+                    })
+                }
             })
     })
+
 }
