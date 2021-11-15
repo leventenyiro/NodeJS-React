@@ -1,5 +1,5 @@
 const Product = require("../models/product.model")
-const languages = require("../../languages.json")
+const languages = require("../config/languages.json")
 const fs = require('fs')
 const path = require('path')
 
