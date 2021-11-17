@@ -6,19 +6,23 @@ const Create = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
     const [active, setActive] = useState('')
+    const [image, setImage] = useState('')
     const [isPending, setIsPending] = useState()
     const history = useHistory();
 
     const handleSubmit = (e) => {
-        //e.preventDefault();
-        const product = { name, price, active };
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('price', price)
+        formData.append('active', active)
+        formData.append('image', image)
 
         setIsPending(true);
 
         fetch('http://localhost:8080/product', {
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(product)
+            body: formData,
+            redirect: 'follow'
         }).then(() => {
             setIsPending(false);
             history.push("/");
@@ -41,7 +45,10 @@ const Create = () => {
                     <input type="number" id="inputPrice" value={price} onChange={(e) => setPrice(e.target.value)} required /><br />
 
                     <label htmlFor="inputActive">Activity</label>
-                    <input type="checkbox" id="inputActive" onChange={(e) => setActive(e.target.checked)}/>
+                    <input type="checkbox" id="inputActive" onChange={(e) => setActive(e.target.checked)}/><br />
+
+                    <label htmlFor="inputImage">Image</label>
+                    <input type="file" id="inputImage" onChange={(e) => setImage(e.target.files[0])}/>
                     <br />
 
                     { !isPending && <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Add product</button> }
